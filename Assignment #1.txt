@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+
+    class Program
+    {
+        static void Main()
+        {
+            int productCount = 5;
+            string[] productNames = new string[productCount];
+            string[] categories = new string[productCount];
+            double[] prices = new double[productCount];
+            int[] quantities = new int[productCount];
+
+            for (int i = 0; i < productCount; i++)
+            {
+                Console.WriteLine("Enter details for product " + (i + 1) + " : ");
+
+                Console.Write("Product Name: ");
+                productNames[i] = Console.ReadLine();
+
+                Console.Write("Category: ");
+                categories[i] = Console.ReadLine();
+
+                Console.Write("Price: ");
+                prices[i] = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Quantity in Stock: ");
+                quantities[i] = Convert.ToInt32(Console.ReadLine());
+            }
+
+            object[,] products = new object[productCount, 4];
+            for (int i = 0; i < productCount; i++)
+            {
+                products[i, 0] = productNames[i];
+                products[i, 1] = categories[i];
+                products[i, 2] = prices[i];
+                products[i, 3] = quantities[i];
+            }
+
+            Console.WriteLine("\nProduct Details:");
+            Console.WriteLine("Name\t\tCategory\t\tPrice\t\tQuantity");
+
+            for (int i = 0; i < productCount; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.Write(products[i, j] + "\t\t");
+                }
+                Console.WriteLine();
+            }
+
+            CalculateTotalStockValue(products, productCount);
+        }
+
+        static void CalculateTotalStockValue(object[,] products, int productCount)
+        {
+            Console.WriteLine("\nTotal Stock Value:");
+            for (int i = 0; i < productCount; i++)
+            {
+                double price = (double)products[i, 2];
+                int quantity = (int)products[i, 3];
+                double totalValue = price * quantity;
+                Console.WriteLine(products[i, 0] + " : " + totalValue);
+
+                Console.ReadKey();
+            }
+        }
+    }
+
+}
