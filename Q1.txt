@@ -11,7 +11,7 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             int[] nums = {2,3,1,1,4};
-            int i=1;
+            int i = 0;
             do
             {
                 
@@ -19,7 +19,7 @@ namespace ConsoleApplication1
                     Console.WriteLine(" True ");
                 else
                     Console.WriteLine(" False ");
-                i = i + i;
+                i = i + nums[i];
             } while (i < 4);
 
             Console.ReadKey();
